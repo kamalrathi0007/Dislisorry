@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>I’m Sorry ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      text-align: center;
+      color: white;
+    }
+
+    h1 {
+      margin-top: 40px;
+      font-size: 40px;
+    }
+
+    #message {
+      font-size: 20px;
+      margin: 20px;
+      min-height: 50px;
+    }
+
+    img {
+      width: 220px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      margin: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #yes {
+      background: #4CAF50;
+      color: white;
+    }
+
+    #yes:hover {
+      transform: scale(1.2);
+    }
+
+    #no {
+      background: #f44336;
+      color: white;
+      position: absolute;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      color: rgba(255,255,255,0.7);
+      animation: float 5s linear infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>I'm really sorry 😔❤️</h1>
+
+<div id="message"></div>
+
+<img src="herphoto.jpg" alt="Her Photo">
+
+<br>
+
+<button id="yes" onclick="forgive()">Forgive me ❤️</button>
+<button id="no" onmouseover="move()">Still angry 😅</button>
+
+<!-- Background Music -->
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* Typing Effect */
+let text = "I know I messed up... but you mean the world to me 💖 Please give me one chance to fix everything.";
+let i = 0;
+
+function typing() {
+  if (i < text.length) {
+    document.getElementById("message").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typing, 50);
+  }
+}
+typing();
+
+/* Yes Button */
+function forgive() {
+  document.body.innerHTML = `
+    <h1>I LOVE YOU SO MUCH ❤️</h1>
+    <p>I promise I’ll do better... forever 🥺</p>
+    <h2>You just made me the happiest person 😭💖</h2>
+  `;
+}
+
+/* No Button Escape */
+function move() {
+  let btn = document.getElementById("no");
+  btn.style.top = Math.random() * window.innerHeight + "px";
+  btn.style.left = Math.random() * window.innerWidth + "px";
+}
+
+/* Floating Hearts Generator */
+setInterval(() => {
+  let heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 20 + 10 + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 5000);
+
+}, 300);
+</script>
+
+</body>
+</html>
