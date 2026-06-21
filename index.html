@@ -24,36 +24,39 @@
     }
 
     h1 {
-      font-size: 38px;
+      font-size: 42px;
       margin-bottom: 15px;
     }
 
     #message {
-      font-size: 18px;
-      width: 85%;
-      max-width: 500px;
+      font-size: 20px;
+      width: 90%;
+      max-width: 600px;
       margin-bottom: 20px;
-      min-height: 60px;
+      line-height: 1.5;
+      min-height: 80px;
     }
 
     img {
-      width: 220px;
+      width: 80%;
+      max-width: 320px;
+      height: auto;
       border-radius: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     }
 
     .buttons {
       position: relative;
-      width: 300px;
+      width: 100%;
       height: 150px;
     }
 
     button {
-      padding: 12px 20px;
-      font-size: 16px;
+      padding: 14px 24px;
+      font-size: 18px;
       border: none;
-      border-radius: 25px;
+      border-radius: 30px;
       cursor: pointer;
       position: absolute;
       transition: 0.2s;
@@ -61,9 +64,8 @@
 
     #yes {
       background: #4CAF50;
-      color: white;
-      left: 30px;
-      top: 50px;
+      left: 25%;
+      top: 40px;
     }
 
     #yes:hover {
@@ -72,9 +74,8 @@
 
     #no {
       background: #f44336;
-      color: white;
-      left: 150px;
-      top: 50px;
+      left: 55%;
+      top: 40px;
     }
 
     /* Floating hearts */
@@ -123,50 +124,52 @@ function typing() {
   if (i < text.length) {
     document.getElementById("message").innerHTML += text.charAt(i);
     i++;
-    setTimeout(typing, 40);
+    setTimeout(typing, 35);
   }
 }
 typing();
 
-/* Yes Button */
+/* YES BUTTON */
 function forgive() {
   document.body.innerHTML = `
-    <h1>HEHE thankkkk you love you yrr ❤️</h1>
-    <p>I promise I’ll do better... forever 🥺</p>
-    <h2>bura manne ka hakk he apko but utna hakk hamara bhi he mannen ka 😭💖</h2>
+    <h1 style="font-size:40px;">HEHE thankkkk you love you yrr ❤️</h1>
+    <p style="font-size:22px;">I promise I’ll do better... forever 🥺</p>
+    <h2 style="font-size:24px;">bura manne ka hakk he apko but utna hakk hamara bhi he manane ka 😭💖</h2>
   `;
 }
 
-/* Smooth No Button Movement (NO LAG) */
+/* NO BUTTON (ALWAYS STAYS INSIDE SCREEN) */
 const noBtn = document.getElementById("no");
 
-noBtn.addEventListener("touchstart", moveButton);
-noBtn.addEventListener("mouseover", moveButton);
-
 function moveButton() {
-  const maxX = window.innerWidth - noBtn.offsetWidth;
-  const maxY = window.innerHeight - noBtn.offsetHeight;
+  const padding = 20;
 
-  const randomX = Math.random() * maxX;
-  const randomY = Math.random() * maxY;
+  const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+  const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+  const randomX = Math.max(padding, Math.random() * maxX);
+  const randomY = Math.max(padding, Math.random() * maxY);
 
   noBtn.style.left = randomX + "px";
   noBtn.style.top = randomY + "px";
 }
 
-/* Floating Hearts */
+noBtn.addEventListener("mouseover", moveButton);
+noBtn.addEventListener("touchstart", moveButton);
+
+/* FLOATING HEARTS */
 setInterval(() => {
   let heart = document.createElement("div");
   heart.className = "heart";
   heart.innerHTML = "❤️";
   heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = Math.random() * 20 + 10 + "px";
+  heart.style.fontSize = Math.random() * 25 + 15 + "px";
   document.body.appendChild(heart);
 
   setTimeout(() => {
     heart.remove();
   }, 5000);
-}, 300);
+}, 250);
 
 </script>
 
